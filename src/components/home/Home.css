@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+    color: white;
+  }
+  
+  h1 {
+    color: red;
+    font-size: 3rem;
+  }
+  
+  p {
+    font-size: 1.5rem;
+    line-height: 2;
+  }
+  
+  .testimonial {
+    border: 1px solid red;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .testimonial p:first-of-type {
+    font-style: italic;
+  }
+  
+  .testimonial p:last-of-type {
+    font-weight: bold;
+  }
+  
