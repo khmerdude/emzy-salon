@@ -1,26 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Home from './components/home/Home';
 import Navbar from './components/navbar/Navbar';
+import Contact from './components/contact/Contact';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
     <Home />
     <Navbar />
-    <Switch>
-        <Route path="/contact">
-          <Contact />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-
+    <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
   </Router>
 
 );
