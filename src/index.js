@@ -11,7 +11,6 @@ import Contact from './components/contact/Contact';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-    <Home />
     <Navbar />
     <Routes>
         <Route exact path="/" element={<Home />} />
