@@ -68,12 +68,12 @@ const Navbar = () => {
         <div className="hidden xl:flex fixed flex-col top-[35%] left-0">
           <ul>
             <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-0 duration-300 bg-[#FFC0CB]">
-              <a className="flex justify-between items-center w-full" href="/">
+              <a className="flex justify-between items-center w-full" href="https://www.instagram.com/emzysalonandspa/">
               <p className="pl-4">Instagram</p> <FaInstagramSquare size={30}/>
               </a>
             </li>
             <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-0 duration-300 bg-[#3b5998]">
-              <a className="flex justify-between items-center w-full" href="/">
+              <a className="flex justify-between items-center w-full" href="https://www.facebook.com/EMZYSalonandSpa/">
                  <p className="pl-4">Facebook</p> <FaFacebookF size={30}/>
               </a>
             </li>
