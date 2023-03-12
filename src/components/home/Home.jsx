@@ -3,7 +3,8 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="container mx-auto px-4 py-8 mt-16">
+    // container
+    <div className="mx-auto px-4 py-8 mt-16 justify-center h-full">
       <h1 className="text-3xl font-bold mb-4">Welcome to EMZY Salon</h1>
       <p className="mb-4">We provide high-quality hair and beauty services at affordable prices. Our experienced and friendly staff will make you feel welcome and relaxed.</p>
       <h2 className="text-xl font-bold mb-2">Testimonials</h2>
