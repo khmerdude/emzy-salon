@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import HeroImage from '../../assets/Emzy_Salon.jpg'; // Make sure to add the image to assets folder
 import SalonImage1 from '../../assets/salon/20210929_122630.jpg';
 import SalonImage2 from '../../assets/salon/20210929_142405.jpg';
@@ -25,6 +25,42 @@ const Home = () => {
     SalonImage2,
     SalonImage3
   ];
+
+  const touchStart = useRef(null);
+  const touchEnd = useRef(null);
+
+  // Minimum distance for a swipe
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    touchEnd.current = null;
+    touchStart.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchMove = (e) => {
+    touchEnd.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart.current || !touchEnd.current) return;
+
+    const distance = touchStart.current - touchEnd.current;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      // Next image
+      setCurrentImageIndex((prev) => 
+        prev === salonImages.length - 1 ? 0 : prev + 1
+      );
+    }
+    if (isRightSwipe) {
+      // Previous image
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? salonImages.length - 1 : prev - 1
+      );
+    }
+  };
 
   // Auto rotate images
   useEffect(() => {
@@ -133,7 +169,12 @@ const Home = () => {
       <section id="about" className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="relative overflow-hidden rounded-lg shadow-lg h-[400px]">
+            <div 
+              className="relative overflow-hidden rounded-lg shadow-lg h-[400px] touch-pan-x"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               {salonImages.map((image, index) => (
                 <img
                   key={image}
@@ -146,7 +187,7 @@ const Home = () => {
                 />
               ))}
               
-              {/* Optional: Add navigation dots */}
+              {/* Navigation dots */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {salonImages.map((_, index) => (
                   <button
