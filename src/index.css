@@ -16,6 +16,8 @@ body {
 
 html {
   scroll-behavior: smooth;
+  background-color: #000000;
+  min-height: 100%;
 }
 
 .navbar {
@@ -25,4 +27,19 @@ html {
 
 main {
   min-height: calc(100vh - 64px);
+}
+
+/* For Safari specifically */
+@supports (-webkit-touch-callout: none) {
+  .bg-black {
+    background-color: #000000 !important;
+  }
+  
+  .bg-gray-50 {
+    background-color: #F9FAFB !important;
+  }
+  
+  .bg-gray-800 {
+    background-color: #1F2937 !important;
+  }
 }

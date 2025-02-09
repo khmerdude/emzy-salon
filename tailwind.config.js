@@ -12,8 +12,9 @@ module.exports = {
     'bg-white',
     'bg-pink-500',
     'bg-pink-600',
-    'bg-gray-800',
     'bg-black/50',
+    '!bg-black',
+    '!bg-gray-800',
     // Text colors
     'text-white',
     'text-gray-400',
