@@ -234,7 +234,7 @@ const Home = () => {
   );
 }
 
-// Keep all services in the array
+// Update the services array at the bottom of the file
 const services = [
   {
     id: 1,
@@ -244,14 +244,14 @@ const services = [
   },
   {
     id: 2,
-    name: "Spa Treatments",
-    description: "Relax and rejuvenate with our luxurious spa treatments and massages.",
+    name: "Beauty Services",
+    description: "Complete your look with our professional makeup and beauty services.",
     icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M14 5l7 7m0 0l-7 7m7-7H3'%3E%3C/path%3E%3C/svg%3E"
   },
   {
     id: 3,
-    name: "Beauty Services",
-    description: "Complete your look with our professional makeup and beauty services.",
+    name: "Spa Treatments",
+    description: "Relax and rejuvenate with our luxurious spa treatments and massages.",
     icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M14 5l7 7m0 0l-7 7m7-7H3'%3E%3C/path%3E%3C/svg%3E"
   }
 ];
