@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/emzy-salon/static/css/main.c1ecd7c5.css",
+    "main.js": "/emzy-salon/static/js/main.fe6ea5b0.js",
+    "static/js/787.34b30fb9.chunk.js": "/emzy-salon/static/js/787.34b30fb9.chunk.js",
+    "static/media/award.jpg": "/emzy-salon/static/media/award.9d748c8a473b12c8dd5f.jpg",
+    "static/media/Emzy_Salon.jpg": "/emzy-salon/static/media/Emzy_Salon.85e689b5e58c6ae7a2f2.jpg",
+    "static/media/IMG_3682+(1).jpg": "/emzy-salon/static/media/IMG_3682+(1).35a7e10f82db38315c08.jpg",
+    "static/media/IMG_3680+(1).jpg": "/emzy-salon/static/media/IMG_3680+(1).c64c77d23873ef350f11.jpg",
+    "static/media/IMG_3683+(1).jpg": "/emzy-salon/static/media/IMG_3683+(1).108558b3918c94cf6d8f.jpg",
+    "static/media/IMG_3676+(2).JPG": "/emzy-salon/static/media/IMG_3676+(2).b70e74b4972307d3022c.JPG",
+    "static/media/IMG_3678+(1).JPG": "/emzy-salon/static/media/IMG_3678+(1).00a8c12e1cadd673282f.JPG",
+    "static/media/20210929_142534.jpg": "/emzy-salon/static/media/20210929_142534.dd27784e6e9ba5334089.jpg",
+    "static/media/20210929_142405.jpg": "/emzy-salon/static/media/20210929_142405.3702a287de94b89d8fe9.jpg",
+    "static/media/IMG_3679+(1).JPG": "/emzy-salon/static/media/IMG_3679+(1).6617c32c6c8122adb333.JPG",
+    "static/media/EMZY+SALON+_+SPA+_9_-removebg-preview.png": "/emzy-salon/static/media/EMZY+SALON+_+SPA+_9_-removebg-preview.4a392c35c780dbd29ecf.png",
+    "static/media/IMG_20211006_220210778_processed.jpg": "/emzy-salon/static/media/IMG_20211006_220210778_processed.9fa357107b017238d9f9.jpg",
+    "static/media/20210929_122630.jpg": "/emzy-salon/static/media/20210929_122630.edbcb671169a67cea3ca.jpg",
+    "static/media/anita3.jpg": "/emzy-salon/static/media/anita3.4d502cf98f0dd027eb18.jpg",
+    "static/media/anita2.jpg": "/emzy-salon/static/media/anita2.47adfd6fe64320378630.jpg",
+    "static/media/IMG_3542.jpg": "/emzy-salon/static/media/IMG_3542.a2d977df06e2aa17f90c.jpg",
+    "static/media/wedding.jpg": "/emzy-salon/static/media/wedding.3c2d2c7c52f43c497880.jpg",
+    "static/media/IMG_3525+(1).jpg": "/emzy-salon/static/media/IMG_3525+(1).ca4b5c6147769d1b2a2c.jpg",
+    "static/media/other2.jpg": "/emzy-salon/static/media/other2.6c665e20c34335344b3e.jpg",
+    "static/media/other1.jpg": "/emzy-salon/static/media/other1.e9308b66794b105292d2.jpg",
+    "static/media/Anita.jpg": "/emzy-salon/static/media/Anita.03743e5a5aac6bd832fe.jpg",
+    "static/media/IMG_3551.jpg": "/emzy-salon/static/media/IMG_3551.61984162c94780670e46.jpg",
+    "index.html": "/emzy-salon/index.html",
+    "main.c1ecd7c5.css.map": "/emzy-salon/static/css/main.c1ecd7c5.css.map",
+    "main.fe6ea5b0.js.map": "/emzy-salon/static/js/main.fe6ea5b0.js.map",
+    "787.34b30fb9.chunk.js.map": "/emzy-salon/static/js/787.34b30fb9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c1ecd7c5.css",
+    "static/js/main.fe6ea5b0.js"
+  ]
+}
