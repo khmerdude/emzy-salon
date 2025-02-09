@@ -1,7 +1,7 @@
 {
   "name": "emzy-salon",
   "version": "0.1.0",
-  "homepage": "https://khmerdude.github.io/emzy-salon",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@craco/craco": "^7.1.0",

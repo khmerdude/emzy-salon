@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
 
@@ -9,7 +9,7 @@ function App() {
   const [isSpaModalOpen, setIsSpaModalOpen] = useState(false);
 
   return (
-    <Router basename="/emzy-salon">
+    <Router>
       <div>
         <Navbar 
           openHairModal={() => setIsHairModalOpen(true)}
