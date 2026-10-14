@@ -1,184 +1,129 @@
-import React, { useState } from 'react';
-import { FaBars, FaTimes, FaFacebookF, FaInstagramSquare, FaPhone } from 'react-icons/fa'
-import Logo from '../../assets/EMZY+SALON+_+SPA+_9_-removebg-preview.png';
+import React, { useEffect, useState } from 'react';
+import { FaBars, FaTimes, FaFacebookF, FaInstagram, FaPhoneAlt, FaChevronDown } from 'react-icons/fa';
+import Logo from '../../assets/logo.png';
+import Button from '../ui/Button';
+import { business } from '../../data/business';
+import { serviceCategories } from '../../data/services';
 
-const Navbar = ({ openHairModal, openBeautyModal, openSpaModal }) => {
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#awards', label: 'Awards' },
+  { href: '#gallery', label: 'Gallery' },
+  { href: '#contact', label: 'Contact' },
+];
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setNav(false);
-    }
-  };
+const Navbar = ({ onSelectService }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Lock page scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  }, [menuOpen]);
+
+  // Header tightens up once the visitor scrolls past the top
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className="bg-black text-white shadow-lg z-50">
-      <div className="container mx-auto px-4 h-16 flex justify-between items-center">
-        {/* Logo */}
-        <div className="py-2">
-          <button 
-            onClick={() => scrollToSection('home')}
-            className="hover:opacity-90 transition-opacity"
-          >
-            <img 
-              src={Logo} 
-              alt="EMZY Salon & Spa Logo" 
-              className="h-12 w-auto object-contain"
-            />
-          </button>
-        </div>
-        
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
-          <button 
-            onClick={() => scrollToSection('home')} 
-            className="text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            Home
-          </button>
-          <div className="relative group">
-            <button 
-              onClick={() => scrollToSection('services')}
-              className="text-white hover:text-pink-300 transition-colors duration-200"
-            >
-              Services
-            </button>
-            <div className="absolute hidden group-hover:block w-48 bg-white shadow-lg rounded-lg mt-2">
-              <button 
-                onClick={openHairModal}
-                className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
-              >
-                Hair Services
-              </button>
-              <button 
-                onClick={openBeautyModal}
-                className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
-              >
-                Beauty Services
-              </button>
-              <button 
-                onClick={openSpaModal}
-                className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
-              >
-                Spa Services
-              </button>
+    <header className={`sticky top-0 z-40 bg-ink text-cream transition-shadow duration-300 ${scrolled ? 'shadow-lg shadow-ink/20' : ''}`}>
+      <nav
+        className={`mx-auto flex max-w-site items-center justify-between px-5 transition-[height] duration-300 md:px-8 ${
+          scrolled ? 'h-16' : 'h-16 md:h-20'
+        }`}
+      >
+        <a href="#top" aria-label="EMZY Salon & Spa home" onClick={closeMenu}>
+          <img
+            src={Logo}
+            alt="EMZY Salon & Spa"
+            className={`w-auto transition-all duration-300 ${scrolled ? 'h-10' : 'h-10 md:h-12'}`}
+          />
+        </a>
+
+        {/* Desktop menu */}
+        <div className="hidden items-center gap-8 text-sm tracking-wide md:flex">
+          <div className="group relative">
+            <a href="#services" className="inline-flex items-center gap-1.5 py-6 transition-colors hover:text-rose-soft">
+              Services <FaChevronDown size={10} className="opacity-60" />
+            </a>
+            <div className="invisible absolute left-1/2 top-full w-48 -translate-x-1/2 rounded-xl bg-cream py-2 text-ink opacity-0 shadow-xl
+              transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              {serviceCategories.map((c) => (
+                <a
+                  key={c.id}
+                  href="#services"
+                  onClick={() => onSelectService(c.id)}
+                  className="block px-5 py-2.5 transition-colors hover:bg-sand"
+                >
+                  {c.label} Services
+                </a>
+              ))}
             </div>
           </div>
-          <button 
-            onClick={() => scrollToSection('about')} 
-            className="text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            About Us
-          </button>
-          <button 
-            onClick={() => scrollToSection('awards')} 
-            className="text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            Awards
-          </button>
-          <button 
-            onClick={() => scrollToSection('gallery')} 
-            className="text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            Gallery
-          </button>
-          <a 
-            href="tel:4404559415"
-            className="bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 
-              transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center"
-          >
-            <FaPhone className="mr-2" size={14} />
-            Book Now
-          </a>
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="transition-colors hover:text-rose-soft">
+              {l.label}
+            </a>
+          ))}
+          <div className="flex items-center gap-4 border-l border-cream/15 pl-6">
+            <a href={business.social.instagram.url} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="transition-colors hover:text-rose-soft">
+              <FaInstagram size={17} />
+            </a>
+            <a href={business.social.facebook.url} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="transition-colors hover:text-rose-soft">
+              <FaFacebookF size={15} />
+            </a>
+          </div>
+          <Button href={business.phoneHref} className="!px-5 !py-2.5">
+            <FaPhoneAlt size={12} /> Book Now
+          </Button>
         </div>
 
-        {/* Hamburger */}
-        <div 
-          onClick={handleClick} 
-          className="md:hidden z-20 p-2 cursor-pointer text-white hover:text-pink-300 transition-colors"
+        {/* Mobile toggle */}
+        <button
+          type="button"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="relative z-50 p-2 md:hidden"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
         >
-          {!nav ? <FaBars size={24} /> : <FaTimes size={24} />}
-        </div>
+          {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+        </button>
+      </nav>
 
-        {/* Mobile Menu */}
-        <div 
-          className={`${
-            !nav ? 'translate-x-full' : 'translate-x-0'
-          } fixed top-0 right-0 w-full h-screen bg-black/95 flex flex-col justify-center items-center z-10
-          transition-transform duration-300 ease-in-out`}
-        >
-          <button 
-            onClick={() => scrollToSection('home')} 
-            className="py-4 text-3xl text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            Home
-          </button>
-          <button 
-            onClick={() => scrollToSection('services')} 
-            className="py-4 text-3xl text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            Services
-          </button>
-          <button 
-            onClick={() => scrollToSection('about')} 
-            className="py-4 text-3xl text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            About Us
-          </button>
-          <button 
-            onClick={() => scrollToSection('awards')} 
-            className="py-4 text-3xl text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            Awards
-          </button>
-          <button 
-            onClick={() => scrollToSection('gallery')} 
-            className="py-4 text-3xl text-white hover:text-pink-300 transition-colors duration-200"
-          >
-            Gallery
-          </button>
-          <a 
-            href="tel:4404559415"
-            className="py-4 text-3xl text-white hover:text-pink-300 transition-colors duration-200 inline-flex items-center"
-          >
-            <FaPhone className="mr-2" size={24} />
-            Book Now
+      {/* Mobile menu */}
+      <div
+        className={`fixed inset-0 z-40 flex flex-col justify-center bg-ink px-8 transition-opacity duration-300 md:hidden ${
+          menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+      >
+        <div className="flex flex-col gap-5 font-display text-4xl">
+          <a href="#services" onClick={closeMenu}>Services</a>
+          {links.map((l) => (
+            <a key={l.href} href={l.href} onClick={closeMenu}>
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <div className="mt-10 flex items-center gap-6">
+          <Button href={business.phoneHref}>
+            <FaPhoneAlt size={12} /> Book Now
+          </Button>
+          <a href={business.social.instagram.url} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <FaInstagram size={22} />
           </a>
-        </div>
-
-        {/* Social Icons */}
-        <div className="hidden lg:flex fixed flex-col top-[35%] left-0">
-          <ul>
-            <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-0 duration-300 bg-gradient-to-r from-purple-500 to-pink-500">
-              <a 
-                className="flex justify-between items-center w-full text-white" 
-                href="https://www.instagram.com/emzysalonandspa/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="pl-4">Instagram</span> 
-                <FaInstagramSquare size={30} className="mr-4"/>
-              </a>
-            </li>
-            <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-0 duration-300 bg-[#3b5998]">
-              <a 
-                className="flex justify-between items-center w-full text-white" 
-                href="https://www.facebook.com/EMZYSalonandSpa/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="pl-4">Facebook</span> 
-                <FaFacebookF size={30} className="mr-4"/>
-              </a>
-            </li>
-          </ul>
+          <a href={business.social.facebook.url} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <FaFacebookF size={20} />
+          </a>
         </div>
       </div>
-    </nav>
+    </header>
   );
-}
+};
 
 export default Navbar;

@@ -2,56 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  background-color: #000000;
-}
-
-html {
-  scroll-behavior: smooth;
-  background-color: #000000;
-  min-height: 100%;
-}
-
-#root {
-  background-color: #000000;
-  min-height: 100vh;
-}
-
-.navbar {
-  height: 64px;
-  z-index: 1000;
-}
-
-main {
-  min-height: calc(100vh - 64px);
-}
-
-/* For Safari specifically */
-@supports (-webkit-touch-callout: none) {
-  html, 
-  body,
-  #root {
-    background-color: #000000 !important;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keep section headings clear of the sticky header when jumping to them */
+    scroll-padding-top: 5rem;
+    background-color: #1E1A19;
   }
-  
-  .bg-black {
-    background-color: #000000 !important;
+
+  body {
+    @apply bg-cream font-sans font-light text-ink antialiased;
   }
-  
-  .bg-gray-50 {
-    background-color: #F9FAFB !important;
+
+  h1, h2, h3 {
+    @apply font-display font-medium;
   }
-  
-  .bg-gray-800 {
-    background-color: #1F2937 !important;
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  /* Scroll-in animations, driven by <Reveal> */
+  .reveal {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-up { transform: translateY(2rem); }
+  .reveal-left { transform: translateX(-2.5rem); }
+  .reveal-right { transform: translateX(2.5rem); }
+  .reveal-zoom { transform: scale(0.94); }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .animate-fade-up {
+      animation: none;
+    }
   }
 }

@@ -1,85 +1,67 @@
 import React from 'react';
-import { FaPhone, FaEnvelope, FaFacebook, FaInstagram, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import Button from '../ui/Button';
+import { Section, SectionHeading } from '../ui/Section';
+import Reveal from '../ui/Reveal';
+import { business, hours } from '../../data/business';
 
-const Contact = () => {
-  return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Contact Us</h2>
-        
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Get In Touch */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Get In Touch</h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3 text-gray-600">
-                  <FaPhone className="text-pink-500" size={20} />
-                  <a href="tel:4404559415" className="hover:text-pink-500 transition-colors">
-                    Phone: (440) 455-9415
-                  </a>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-600">
-                  <FaEnvelope className="text-pink-500" size={20} />
-                  <a href="mailto:emzysalonandspa@gmail.com" className="hover:text-pink-500 transition-colors">
-                    Email: emzysalonandspa@gmail.com
-                  </a>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-600">
-                  <FaInstagram className="text-pink-500" size={20} />
-                  <a 
-                    href="https://www.instagram.com/emzysalonandspa/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:text-pink-500 transition-colors"
-                  >
-                    @emzysalonandspa
-                  </a>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-600">
-                  <FaFacebook className="text-pink-500" size={20} />
-                  <a 
-                    href="https://www.facebook.com/EMZYSalonandSpa/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:text-pink-500 transition-colors"
-                  >
-                    EMZY Salon & Spa
-                  </a>
-                </div>
-              </div>
-            </div>
+const Card = ({ icon: Icon, title, delay, children }) => (
+  <Reveal delay={delay} className="h-full">
+    <div className="h-full rounded-[1.5rem] border border-line bg-cream p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5">
+      <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-full bg-rose-soft text-rose">
+        <Icon size={16} />
+      </span>
+      <h3 className="mb-4 text-2xl">{title}</h3>
+      <div className="space-y-2 text-muted">{children}</div>
+    </div>
+  </Reveal>
+);
 
-            {/* Location */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Location</h3>
-              <div className="flex items-start space-x-3 text-gray-600">
-                <FaMapMarkerAlt className="mt-1 text-pink-500" size={20} />
-                <div>
-                  <p>26735 Brookpark Rd Ext</p>
-                  <p>North Olmsted, OH 44070</p>
-                  <p>United States</p>
-                </div>
-              </div>
-            </div>
+const linkClass = 'flex items-center gap-3 transition-colors hover:text-rose';
 
-            {/* Hours */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Hours</h3>
-              <div className="flex items-start space-x-3 text-gray-600">
-                <FaClock className="mt-1 text-pink-500" size={20} />
-                <div className="space-y-2">
-                  <p>Tuesday - Thursday: 10am - 5pm</p>
-                  <p>Saturday: 9am - 2pm</p>
-                  <p>Sunday, Monday, & Friday: Closed</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+const Contact = () => (
+  <Section id="contact" className="bg-sand">
+    <SectionHeading eyebrow="Contact / Info" title="Contact Us" />
 
-export default Contact; 
+    <div className="grid gap-5 md:grid-cols-3">
+      <Card icon={FaPhoneAlt} title="Get In Touch">
+        <a href={business.phoneHref} className={linkClass}>
+          <FaPhoneAlt size={12} /> {business.phone}
+        </a>
+        <a href={`mailto:${business.email}`} className={`${linkClass} break-all`}>
+          <FaEnvelope size={12} className="shrink-0" /> {business.email}
+        </a>
+        <a href={business.social.instagram.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
+          <FaInstagram size={13} /> {business.social.instagram.handle}
+        </a>
+        <a href={business.social.facebook.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
+          <FaFacebookF size={12} /> {business.social.facebook.handle}
+        </a>
+      </Card>
+
+      <Card icon={FaMapMarkerAlt} title="Location" delay={120}>
+        <p className="text-ink">{business.address.plaza}</p>
+        <p>{business.address.street}</p>
+        <p>{business.address.city}</p>
+      </Card>
+
+      <Card icon={FaClock} title="Hours" delay={240}>
+        {hours.map((h) => (
+          <p key={h.days}>
+            <span className="text-ink">{h.days}</span>
+            <br />
+            {h.time}
+          </p>
+        ))}
+      </Card>
+    </div>
+
+    <div className="mt-12 text-center">
+      <Button href={business.phoneHref}>
+        <FaPhoneAlt size={12} /> Call to Book: {business.phone}
+      </Button>
+    </div>
+  </Section>
+);
+
+export default Contact;

@@ -1,38 +1,38 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./public/index.html"
-  ],
-  safelist: [
-    // Backgrounds
-    'bg-black',
-    'bg-gray-50',
-    'bg-gray-800',
-    'bg-white',
-    'bg-pink-500',
-    'bg-pink-600',
-    'bg-black/50',
-    '!bg-black',
-    '!bg-gray-800',
-    // Text colors
-    'text-white',
-    'text-gray-400',
-    'text-gray-600',
-    'text-pink-500',
-    'text-pink-300',
-    // Hover states
-    'hover:bg-pink-600',
-    'hover:bg-gray-800',
-    'hover:text-pink-500',
-    'hover:text-pink-300',
-    // Opacity
-    'opacity-50',
-    'opacity-100',
-    'opacity-0'
-  ],
+export default {
+  content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
-    extend: {},
+    extend: {
+      // Brand palette: change the look of the whole site from here
+      colors: {
+        cream: '#FAF6F1',
+        sand: '#F2EBE2',
+        line: '#E5DBCF',
+        ink: '#1E1A19',
+        muted: '#6E645E',
+        rose: {
+          DEFAULT: '#A8323E',
+          dark: '#8A2832',
+          soft: '#F5E6E3',
+        },
+      },
+      fontFamily: {
+        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans: ['Jost', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        site: '72rem',
+      },
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(1rem)' },
+          to: { opacity: '1', transform: 'none' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both',
+      },
+    },
   },
   plugins: [],
-}
+};
